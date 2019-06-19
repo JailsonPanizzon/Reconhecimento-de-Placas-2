@@ -1,6 +1,7 @@
 import cv2
 from detect_color import cl
-cap = cv2.VideoCapture(0)
+#cap = cv2.VideoCapture("VID-20190617-WA0009.mp4")
+cap = cv2.VideoCapture("VID-20190617-WA0010.mp4")
 cascade = cv2.CascadeClassifier("cascade.xml")
 while True:
     ret, img = cap.read()
