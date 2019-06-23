@@ -1,12 +1,11 @@
 import cv2
+import numpy as np
 
 class cl:
     def detect(img,cor):
         kernel = np.ones((5 , 5), np.uint8)
-        cord=[]
-        cord.append([0,0])
-        cord.append([1,1])
-        val = 30
+        cord = []
+        val = 5
         rangomax = np.array([int(cor[0])+val,int(cor[1])+val,int(cor[2])+val])
         rangomin = np.array([int(cor[2])-val,int(cor[2])-val,int(cor[2])-val])
         mask = cv2.inRange(img,rangomin,rangomax)
