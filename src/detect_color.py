@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
-from PIL import Image
-import colorsys
+
 
 class cl:
     def detect(img,cor1,cor2):
@@ -32,10 +31,19 @@ class cl:
         cv2.imshow("cor", mask)
         return cord
 
-    def convert2hsv(rgb):
+    '''def convert2hsv(rgb):
         hsv=colorsys.rgb_to_hsv(rgb[0],rgb[1],rgb[2])
         return hsv
 
     def convert2rgb(hsv):
         rgb = colorsys.hsv_to_rgb(hsv[0],hsv[1],hsv[2])
-        return rgb
+        return rgb'''
+
+    def equaliza(img):
+        #equaliza imagens nos canais R,G,B
+        b, g, r = cv2.split(img)
+        red = cv2.equalizeHist(r)
+        green = cv2.equalizeHist(g)
+        blue = cv2.equalizeHist(b)
+        blue=b
+        return cv2.merge((blue, green, red))
