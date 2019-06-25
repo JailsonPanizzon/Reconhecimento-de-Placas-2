@@ -17,7 +17,7 @@ while True:
     print(cor2)
     if (not(cord[0] == 0 and cord[1] == 0 and cord[2] == 0 and cord[3] == 0)):
         img = img[cord[1]:cord[1]+cord[3],cord[0]:cord[0]+cord[2]]
-        placa = cascade.detectMultiScale(img, 1.9,5)
+        placa = cascade.detectMultiScale(img, 1.3,5)
         print(cord)
         for (x,y,w,h) in placa:
             cv2.rectangle(img, (x,y),(x+w,y+h),(255,0,0),2)

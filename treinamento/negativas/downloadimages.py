@@ -25,9 +25,9 @@ def montar_negativas():
             print(str(e))
 def gera_list_neg():
         for img in os.listdir():
-	    line = "negativas"
-            line += img+'\n'
-            with open('bg.txt','a') as f:
-                f.write(line)
+                line = "negativas/"
+                line += img+'\n' 
+                with open('bg.txt','a') as f:
+                    f.write(line)
 #montar_negativas()
 gera_list_neg()
