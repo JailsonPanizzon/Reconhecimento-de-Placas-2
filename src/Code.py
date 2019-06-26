@@ -1,11 +1,12 @@
 import cv2
 from detect_color import cl
-cap = cv2.VideoCapture("VID-20190617-WA0009.mp4")
+cap = cv2.VideoCapture(0)
+#cap = cv2.VideoCapture("VID-20190617-WA0009.mp4")
 #cap = cv2.VideoCapture("VID-20190617-WA0010.mp4")
 cascade = cv2.CascadeClassifier("cascade.xml")
 while True:
     ret, img = cap.read()
-    cor1 =[255,100,80]
+    cor1 =[255,100,100]
     cor2 =[50,0,0]
     #cor1 = cl.convert2hsv([50,255,50])
     #cor2.append(cor1[0]-1)
@@ -20,6 +21,7 @@ while True:
         
         for (x,y,w,h) in placa:
             cv2.rectangle(img, (x,y),(x+w,y+h),(255,0,0),2)
+            print(cl.readText(img))
         cv2.imshow("shown",img)
     k=cv2.waitKey(30) & 0xff
     if k == 27:

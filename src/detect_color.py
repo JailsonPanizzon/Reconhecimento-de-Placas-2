@@ -1,5 +1,8 @@
 import cv2
 import numpy as np
+from PIL import Image
+from matplotlib import cm
+import pytesseract
 
 
 class cl:
@@ -47,3 +50,10 @@ class cl:
         blue = cv2.equalizeHist(b)
         blue=b
         return cv2.merge((blue, green, red))
+    
+    def readText(img):
+        #pytesseract.pytesseract.tesseract_cmd = ( r"C:\Program Files (x86)\Tesseract")
+        cv2.imwrite("t1.bmp",img)
+        im = Image.open("t1.bmp")
+        phrase = pytesseract.image_to_string((im), lang="eng")
+        return phrase
