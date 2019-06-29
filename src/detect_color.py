@@ -29,10 +29,8 @@ class cl:
         opening = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
         cord = cv2.boundingRect(opening)
         x, y, w, h = cv2.boundingRect(opening)
-        print(x, y, w, h)
-        cv2.rectangle(img, (x, y), (x+w, y + h), (255, 255, 0), 5)
         cv2.imshow("cor", mask)
-        return cord
+        return mask
 
     '''def convert2hsv(rgb):
         hsv=colorsys.rgb_to_hsv(rgb[0],rgb[1],rgb[2])
@@ -53,7 +51,6 @@ class cl:
     
     def readText(img):
         #pytesseract.pytesseract.tesseract_cmd = ( r"C:\Program Files (x86)\Tesseract")
-        cv2.imwrite("t1.bmp",img)
-        im = Image.open("t1.bmp")
+        im = Image.fromarray(img)
         phrase = pytesseract.image_to_string((im), lang="eng")
         return phrase

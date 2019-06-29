@@ -1,28 +1,40 @@
 import cv2
+import os
 from detect_color import cl
-cap = cv2.VideoCapture(0)
+
+#cap = cv2.VideoCapture(0)
 #cap = cv2.VideoCapture("VID-20190617-WA0009.mp4")
 #cap = cv2.VideoCapture("VID-20190617-WA0010.mp4")
 cascade = cv2.CascadeClassifier("cascade.xml")
-while True:
-    ret, img = cap.read()
-    cor1 =[255,100,100]
-    cor2 =[50,0,0]
-    #cor1 = cl.convert2hsv([50,255,50])
-    #cor2.append(cor1[0]-1)
-    #cor2.append(cor1[1]-1)
-    #cor2.append(20)
-    img = cl.equaliza(img)
-    cord = cl.detect(img,cor1,cor2)
-   
-    if (not(cord[0] == 0 and cord[1] == 0 and cord[2] == 0 and cord[3] == 0)):
-        img = img[cord[1]:cord[1]+cord[3],cord[0]:cord[0]+cord[2]]
-        placa = cascade.detectMultiScale(img, 1.3,7)
-        
-        for (x,y,w,h) in placa:
-            cv2.rectangle(img, (x,y),(x+w,y+h),(255,0,0),2)
+cont = 0
+#while True:
+for i in os.listdir("avaliacao"):
+    img = cv2.imread("avaliacao/"+str(i)) 
+    #ret, img = cap.read()
+    cor1 =[255,200,200]
+    cor2 =[60,0,0]
+    #img = cl.equaliza(img)
+    #img = cl.detect(img,cor1,cor2)
+    placa = cascade.detectMultiScale(img,1.5,7)
+    print("========================================")    
+    for (x,y,w,h) in placa:
+        cv2.rectangle(img, (x,y),(x+w,y+h),(255,0,0),1)
+        yh,yh2,xh,xh2 = y,y+h,x,x+w
+        p = 0.5
+        if(y-(h*p) > 0):
+            yh = int(y-(h*p))
+        if(y+(h*p) < img.shape[0]-1):
+            yh2 = int(y+h+(h*p))
+        if(x-(w*p) > 0):
+            xh = int(x-(w*p))
+        if(x+(w*p) < img.shape[1]-1):
+            xh2 = int(x+w+(w*p))
+        img = img[yh:yh2,xh:xh2]
+        if(img.shape[0]>0 and img.shape[1] > 0 ):
+            cv2.imshow("shown",img)
+            cont+=1
+            cv2.imwrite("results/"+str(cont)+".png",img)
             print(cl.readText(img))
-        cv2.imshow("shown",img)
     k=cv2.waitKey(30) & 0xff
     if k == 27:
         break
