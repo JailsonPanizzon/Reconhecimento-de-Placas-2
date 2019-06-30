@@ -1,5 +1,6 @@
-opencv_createsamples -info info.txt -vec vector/vector.vec -num 834 -w 24 -h 24
+opencv_createsamples -info info.txt -vec vector/vector.vec -num 1245 -w 24 -h 24
 
 
-opencv_traincascade -data cascades -vec vector/vector.vec -bg negativas/bg.txt -numPos 244 -numNeg 834 -numStages 11 -mem 950 -mode ALL -w 24 -h 24 -maxFalseAlarmRate 0.003 -minHitRate 0.997 -weightTrimRate 0.97
- 
+opencv_traincascade -data cascades -vec vector/vector.vec -bg negativas/bg.txt -numPos 555 -numNeg 1245 -numStages 10 -mem 950 -mode ALL -w 24 -h 24
+
+opencv_visualisation --image=/rawdata/1.bmp --model=/cascades/cascade.xml --data=/results_features/ 
