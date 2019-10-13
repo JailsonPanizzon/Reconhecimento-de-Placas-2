@@ -1,5 +1,5 @@
 # Autor Jailson Lucas Panizzon, jailson.panizzon@gmail.com
-# Problema com diretorio podem estar relacionado com a função os.listdir
+# Problema com diretorio podem estar relacionado com a função os.listdir, tente usar o caminho sem src/
 # Use python 3.7 para evitar problemas
 import cv2
 import os
@@ -21,7 +21,7 @@ for i in os.listdir("src/avaliacao"+tipo):
     img = cl.equaliza(img)
     #img = cl.detect(img,cor1,cor2)
     tam = (int(img.shape[0]*0.5), int(img.shape[1]*0.2))
-    placa = cascade.detectMultiScale(img, 1.1, 30, 0, tam)
+    placa = cascade.detectMultiScale(img, 1.1, 25, 0, tam)
 
     print("========================================")
     find = False
